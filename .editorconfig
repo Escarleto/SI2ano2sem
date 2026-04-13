@@ -1,0 +1,14 @@
+root = true
+
+# C# files
+[*.cs]
+
+# Suprimir sugestões de using desnecessários
+dotnet_separate_import_directive_groups = false
+dotnet_sort_system_directives_first = true
+
+# Remover usings não utilizados automaticamente
+csharp_using_directive_placement = outside_namespace
+
+# Suprimir usando System.Numerics para evitar conflito com UnityEngine
+dotnet_diagnostic.IDE0005.severity = warning

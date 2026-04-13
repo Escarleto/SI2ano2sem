@@ -1,0 +1,22 @@
+{
+  "RoslynExtensionsOptions": {
+    "EnableAnalyzersSupport": true,
+    "EnableRoslynAnalyzers": true,
+    "AnalyzeOpenDocumentsOnly": false,
+    "LocationPaths": []
+  },
+  "FormattingOptions": {
+    "EnableEditorConfigSupport": true,
+    "OrganizeImports": true,
+    "IndentSize": 4,
+    "TabSize": 4
+  },
+  "implementTypeCompletionProvider": {
+    "addUsings": false
+  },
+  "completionProvider": {
+    "objectCreationProvider": {
+      "addUsings": false
+    }
+  }
+}
