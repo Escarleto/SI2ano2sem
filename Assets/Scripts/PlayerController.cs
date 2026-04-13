@@ -1,3 +1,4 @@
+using System.Buffers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,29 +8,39 @@ public class PlayerController : MonoBehaviour
     private Vector3 MoveDirection;
     [SerializeField] private float MoveSpeed = 15f;
     [SerializeField] private float JumpForce = 5f;
-    [SerializeField] private float BallRotationSpeed = 3.5f;
+    [SerializeField] private float BallRotationSpeed = 100f;
     private Rigidbody RB;
-    [SerializeField] private GameObject PlayerModel;
+    [SerializeField] private Transform PlayerModel;
+    [SerializeField] private Transform CamDir;
+
+    [System.NonSerialized] public int PlayerIndex = 0; // Índice do jogador, atribuído pelo Manager quando o jogador entra no jogo
+    [System.NonSerialized] public Vector3 SpawnPoint;
 
     private void Start()
     {
         RB = GetComponent<Rigidbody>();
+        SpawnPoint = transform.position; // Define o ponto de spawn inicial como a posição atual do jogador
     }
 
     private void FixedUpdate() //Usa FixedUpdate para garantir que a física seja aplicada de forma consistente
     {
         //Aplica a força de movimento com base na entrada do jogador, normalizando para evitar que a velocidade seja maior na diagonal
-        MoveDirection = new Vector3(MoveInput.x, 0f, MoveInput.y).normalized;
-        RB.AddForce(MoveDirection * MoveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+        Vector3 InputDirection = (CamDir.forward * MoveInput.y + CamDir.right * MoveInput.x).normalized;
+        MoveDirection = InputDirection * MoveSpeed * Time.fixedDeltaTime;
+        RB.AddForce(MoveDirection, ForceMode.VelocityChange);
+        RB.linearVelocity = Mathf.Clamp(RB.linearVelocity.magnitude, 0f, MoveSpeed * 3f) * RB.linearVelocity.normalized; // Limita a velocidade máxima do jogador para evitar que ele se mova muito rápido
 
-        //Faz o modelo da bola rodar usando a velocidade do Rigidbody para criar um efeito de rotação mais realista
-        PlayerModel.transform.Rotate(RB.linearVelocity * BallRotationSpeed * Time.fixedDeltaTime, Space.Self);
+        //Aumenta a velocidade de rotação da bola com base na velocidade do movimento para criar um efeito de rotação mais intenso quando a bola estiver se movendo mais rápido
+        BallRotationSpeed = RB.linearVelocity.magnitude * 10f;
+        //Gira o modelo do jogador com base na direção do movimento para criar um efeito de rotação da bola
+        PlayerModel.Rotate(Vector3.Cross(Vector3.up, RB.linearVelocity).normalized * BallRotationSpeed * Time.fixedDeltaTime, Space.World);
     }
 
     public void OnMove(InputAction.CallbackContext Context) //Este método é chamado quando o jogador aperta as teclas de movimento
     {
-        MoveInput = Context.ReadValue<Vector2>().normalized;
+        MoveInput = Context.ReadValue<Vector2>();
     }
+
     public void OnJump(InputAction.CallbackContext Context) //Este método é chamado quando o jogador aperta a tecla de pulo
     {
         if (Context.started && IsGrounded())
