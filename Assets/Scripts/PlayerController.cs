@@ -1,19 +1,21 @@
 using System.Buffers;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    private Vector2 MoveInput;
-    private Vector3 MoveDirection;
-    [SerializeField] private float MoveSpeed = 15f;
+    [System.NonSerialized] public Vector2 MoveInput;
+    [System.NonSerialized] public Vector3 MoveDirection;
+    public float MoveSpeed = 15f;
     [SerializeField] private float JumpForce = 5f;
     [SerializeField] private float BallRotationSpeed = 100f;
-    private Rigidbody RB;
+    [System.NonSerialized] public Rigidbody RB;
     [SerializeField] private Transform PlayerModel;
     [SerializeField] private Transform CamDir;
 
     [System.NonSerialized] public int PlayerIndex = 0; // Índice do jogador, atribuído pelo Manager quando o jogador entra no jogo
+    [System.NonSerialized] public Color PlayerColor;
     [System.NonSerialized] public Vector3 SpawnPoint;
 
     private void Start()
@@ -44,13 +46,17 @@ public class PlayerController : MonoBehaviour
     public void OnJump(InputAction.CallbackContext Context) //Este método é chamado quando o jogador aperta a tecla de pulo
     {
         if (Context.started && IsGrounded())
-        {
             RB.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
-        }
     }
 
     private bool IsGrounded() //Este método verifica se a bola está tocando o chão usando um Raycast para detectar colisões com o chão
     {
         return Physics.Raycast(transform.position, Vector3.down, 0.1f);
     }
+
+    private void ResetMoveSpeed() //Este método é chamado para resetar a velocidade do jogador após o efeito do item Nitro acabar
+    {
+        MoveSpeed /= 2f; // Reseta a velocidade de movimento do jogador para o valor original
+    }
+
 }
