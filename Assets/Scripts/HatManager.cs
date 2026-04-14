@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class HatManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject[] Hats; // Array para armazenar os chapéus correspondentes a cada jogador, com um limite de 4 jogadores
+    [SerializeField] private GameObject HatAnchor; // Referência ao objeto vazio que representa o local onde o chapéu deve ser posicionado
+    private PlayerController Player; // Referência ao PlayerController para acessar o índice do jogador
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        Player = GetComponent<PlayerController>(); // Obtém o PlayerController do jogador para acessar o índice do jogador
+        if (Player == null) return;
+        Instantiate(Hats[Player.PlayerIndex], HatAnchor.transform); // Instancia o chapéu correspondente ao jogador usando o índice do jogador para acessar o array de chapéus
     }
 }
