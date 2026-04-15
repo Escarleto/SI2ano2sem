@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2766cd7a176d67d5882d9dba914fec43
+guid: 312dfaad4c3d9e334b69f952dd18a57c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,28 +7,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Chapeu Alto
-    second: {fileID: 2100000, guid: 7dc80efb7c8a111c0a1e2155f859152b, type: 2}
+      name: Estrada
+    second: {fileID: 2100000, guid: 5056199e37f9eaa73af8bb63d5d17362, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Chapeu Gordo
-    second: {fileID: 2100000, guid: 69585bbd7c1064943a6ac4ca5aaad731, type: 2}
+      name: Spaguetti
+    second: {fileID: 2100000, guid: 93fb019be5a433151be4e90362bcc755, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Garfo
-    second: {fileID: 2100000, guid: 5ab7e42004563bcbf804b82bb2bdbf18, type: 2}
+      name: Spaguetti.001
+    second: {fileID: 2100000, guid: 21a9109ec8c6bbe519aba0c398e3b26a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Plumber Hat
-    second: {fileID: 2100000, guid: 0d51e9a87bc081ca991911fabd9d26ef, type: 2}
+      name: parede
+    second: {fileID: 2100000, guid: 19b3382a7912127788d33bfdb550419e, type: 2}
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Rosa
-    second: {fileID: 2100000, guid: 2e1e62774122183e38b7ef7b3eb1bba7, type: 2}
+      name: TexturaParede
+    second: {fileID: 2800000, guid: ae1ce469e95a2e45592b7d488173f230, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -60,7 +60,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1

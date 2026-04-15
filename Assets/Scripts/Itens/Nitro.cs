@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class Nitro : MonoBehaviour, Item
 {
+    [SerializeField] private Sprite ItemIcon; // Ícone do item para exibir na UI
+    public Sprite ItemIconUI => ItemIcon; // Retorna o ícone do item para a UI
+
     public void Use(PlayerController Player)
     {
-        Player.MoveSpeed *= 3.5f;
-        Player.Invoke("ResetMoveSpeed", 3f); // Chama o método ResetMoveSpeed após 3 segundos para resetar a velocidade do jogador
+        Player.StartCoroutine(Player.Nitro()); // Inicia a coroutine do item Nitro no PlayerController para aplicar o efeito de aumento de velocidade
     }
 }
