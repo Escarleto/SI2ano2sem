@@ -5,6 +5,9 @@ using System.Collections;
 
 public class Barrier : MonoBehaviour, Item
 {
+    [SerializeField] private Sprite ItemIcon; // Ícone do item para exibir na UI
+    public Sprite ItemIconUI => ItemIcon; // Retorna o ícone do item para a UI
+
     private Vector3 BarrierPos;
     private float BarrierRotY;
     [SerializeField] private GameObject BarrierPrefab; // Prefab da barreira a ser instanciada

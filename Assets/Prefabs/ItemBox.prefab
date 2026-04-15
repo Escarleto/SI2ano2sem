@@ -4861,7 +4861,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3.32, z: 14}
-  m_LocalScale: {x: 2.264, y: 2.264, z: 2.264}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1297305985830333491}
@@ -4881,6 +4881,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Itens:
+  - {fileID: 3733389103486629637, guid: e95324215b6947cc197a6e03711aab65, type: 3}
+  - {fileID: 5829080938230370055, guid: f31f96b768bcda5279761ec4d7a0840a, type: 3}
+  - {fileID: 4147706849762058651, guid: ea9be86364ad6418dab115924ab0e5f7, type: 3}
   - {fileID: 440175683488829456, guid: a9cac5eb26d48a777891b4f65eae3e7a, type: 3}
   CollectEffect: {fileID: 6502480641608432424}
   ItemBoxModel: {fileID: 2094045817427165540}
@@ -4969,6 +4972,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 738b278fe259bb72086ba90d44aba019, type: 3}
       propertyPath: m_Name
       value: Primenteiro
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 738b278fe259bb72086ba90d44aba019, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

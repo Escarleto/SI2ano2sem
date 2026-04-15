@@ -2,6 +2,8 @@ using System.Buffers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
+using DG.Tweening;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] public Vector3 MoveDirection;
     public float MoveSpeed = 15f;
     [SerializeField] private float JumpForce = 5f;
-    [SerializeField] private float BallRotationSpeed = 100f;
+    public float BallRotationSpeed = 100f;
     [System.NonSerialized] public Rigidbody RB;
     [SerializeField] private Transform PlayerModel;
     [SerializeField] private Transform CamDir;
@@ -54,9 +56,22 @@ public class PlayerController : MonoBehaviour
         return Physics.Raycast(transform.position, Vector3.down, 0.1f);
     }
 
-    private void ResetMoveSpeed() //Este método é chamado para resetar a velocidade do jogador após o efeito do item Nitro acabar
+    public IEnumerator Nitro()
     {
-        MoveSpeed /= 2f; // Reseta a velocidade de movimento do jogador para o valor original
+        MoveSpeed *= 3.5f;
+        BallRotationSpeed *= 3.5f; // Aumenta a velocidade de rotação da bola para criar um efeito visual mais intenso durante o uso do item Nitro
+
+        yield return new WaitForSeconds(1.5f); // Dura 1.5 segundos
+
+        MoveSpeed /= 3.5f; // Reseta a velocidade do jogador após o efeito do item Nitro acabar
+        BallRotationSpeed /= 3.5f; // Reseta a velocidade de rotação da bola após o efeito do item Nitro acabar
+    }
+
+    public IEnumerator Giant() //Este método é chamado para aplicar o efeito do item Giant, aumentando temporariamente o tamanho do jogador
+    {
+        transform.DOScale(Vector3.one * 3, 0.5f).SetEase(Ease.OutBack);
+        yield return new WaitForSeconds(5f); // Dura 5 segundos
+        transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.InBack);
     }
 
 }

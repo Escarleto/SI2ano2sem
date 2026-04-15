@@ -33,9 +33,10 @@ public class ItemBox : MonoBehaviour
         if (other.CompareTag("Player")) // Verifica se o objeto que colidiu com a caixa de itens tem a tag "Player"
         {
             int ItemIndex = Random.Range(0, Itens.Length); // Gera um índice aleatório para selecionar um item do array de itens
-            other.GetComponent<ItemManager>().ItemSlot = Itens[ItemIndex].GetComponent<Item>(); // Atribui o item selecionado ao slot de item do jogador
-
+            ItemManager PlayerItem = other.GetComponent<ItemManager>(); // Obtém o componente ItemManager do jogador para equipar o item
+            if (PlayerItem.ItemSlot != null) return; // Verifica se o jogador já tem um item equipado, se sim, não permite coletar outro item
             CollectEffect.Play(); // Toca o efeito de coleta para indicar que o item foi coletado
+            PlayerItem.GetItem(Itens[ItemIndex].GetComponent<Item>()); // Chama o método GetItem() do ItemManager para equipar o item selecionado
             SetBox(false); // Chama o método para desativar a caixa de itens, tornando-a invisível e não interativa
             StartCoroutine(RespawnItemBox()); // Inicia a coroutine para respawnar a caixa de itens após um tempo determinado
         }
