@@ -2,21 +2,26 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using DG.Tweening;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerUI : MonoBehaviour
 {
-    private PlayerController Player;
+    private PlayerData Player;
     public GameObject Canvas;
-    [SerializeField] private UnityEngine.UI.Image BlindEffect;
+    [SerializeField] private Image BlindEffect;
 
     private void Start()
     {
-        Player = GetComponent<PlayerController>();
+        Player = GetComponent<PlayerData>();
 
-        //Configura a cor do Canvas para ser a mesma do jogador usando o PlayerController para acessar a cor do jogador
-        foreach (UnityEngine.UI.Image Image in Canvas.GetComponentsInChildren<UnityEngine.UI.Image>())
-            Image.color = Player.PlayerColor;
+        //Configura a cor do Canvas para ser a mesma do jogador usando o PlayerData para acessar a cor do jogador
+        foreach (Image CurrentImage in Canvas.GetComponentsInChildren<Image>())
+        {
+            if (CurrentImage.gameObject.CompareTag("ButtonMap")) continue;
+            CurrentImage.color = Player.PlayerColor;
+        }
+
     }
 
     public IEnumerator BlindEffectCoroutine()
