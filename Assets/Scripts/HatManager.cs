@@ -1,3 +1,4 @@
+//using System;
 using UnityEngine;
 
 public class HatManager : MonoBehaviour
@@ -38,9 +39,10 @@ public class HatManager : MonoBehaviour
         {
             UI.SetActive(false);
         }
+
     }
 
-    public void NextHat()
+    public void NextHat(int ToHat)
     {
         currentHatIndex++;
 

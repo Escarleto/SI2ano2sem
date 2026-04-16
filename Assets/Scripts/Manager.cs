@@ -24,10 +24,12 @@ public class Manager : MonoBehaviour
 
     private void OnPlayerJoined(PlayerInput player)
     {
-        PlayerController NewPlayer = player.GetComponent<PlayerController>(); // Obtém o PlayerController do jogador que entrou no jogo usando o componente PlayerInput
+        /*PlayerController NewPlayer = player.GetComponent<PlayerController>(); // Obtém o PlayerController do jogador que entrou no jogo usando o componente PlayerInput
 
         NewPlayer.PlayerIndex = player.playerIndex;
         PlayersInGame[player.playerIndex] = NewPlayer; // Adiciona o PlayerController do jogador que entrou no jogo ao array de jogadores usando o índice do jogador como chave
         NewPlayer.PlayerColor = PlayerColors[player.playerIndex]; // Atribui uma cor ao jogador com base no índice do jogador usando o array de cores
+    */
+
     }
 }
