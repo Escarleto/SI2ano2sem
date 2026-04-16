@@ -7,7 +7,7 @@ public class FallArea : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Teleporta o jogador de volta para o ponto de spawn definido no PlayerController
-            other.GetComponent<PlayerController>().transform.position = other.GetComponent<PlayerController>().SpawnPoint;
+            other.GetComponent<PlayerData>().transform.position = other.GetComponent<PlayerData>().SpawnPoint;
             Rigidbody RB = other.GetComponent<Rigidbody>();
             if (RB != null)
             {

@@ -16,20 +16,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform PlayerModel;
     [SerializeField] private Transform CamDir;
 
-    [System.NonSerialized] public int PlayerIndex = 0; // Índice do jogador, atribuído pelo Manager quando o jogador entra no jogo
-    [System.NonSerialized] public Color PlayerColor;
-    [System.NonSerialized] public Vector3 SpawnPoint;
-
     private void Start()
     {
         RB = GetComponent<Rigidbody>();
-        SpawnPoint = transform.position; // Define o ponto de spawn inicial como a posição atual do jogador
     }
 
     private void FixedUpdate() //Usa FixedUpdate para garantir que a física seja aplicada de forma consistente
     {
+        Vector3 PlaneCamDir = Vector3.ProjectOnPlane(CamDir.forward, Vector3.up).normalized; // Obtém a direção da câmera no plano horizontal, ignorando a inclinação vertical
+        Vector3 CamRight = Vector3.ProjectOnPlane(CamDir.right, Vector3.up).normalized; // Obtém a direção lateral da câmera no plano horizontal
         //Aplica a força de movimento com base na entrada do jogador, normalizando para evitar que a velocidade seja maior na diagonal
-        Vector3 InputDirection = (CamDir.forward * MoveInput.y + CamDir.right * MoveInput.x).normalized;
+        Vector3 InputDirection = (PlaneCamDir * MoveInput.y + CamRight * MoveInput.x).normalized;
         MoveDirection = InputDirection * MoveSpeed * Time.fixedDeltaTime;
         RB.AddForce(MoveDirection, ForceMode.VelocityChange);
         RB.linearVelocity = Mathf.Clamp(RB.linearVelocity.magnitude, 0f, MoveSpeed * 3f) * RB.linearVelocity.normalized; // Limita a velocidade máxima do jogador para evitar que ele se mova muito rápido
@@ -72,6 +69,11 @@ public class PlayerController : MonoBehaviour
         transform.DOScale(Vector3.one * 3, 0.5f).SetEase(Ease.OutBack);
         yield return new WaitForSeconds(5f); // Dura 5 segundos
         transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.InBack);
+    }
+
+    public void OnDisable() //Este método é chamado para desabilitar o PlayerController, impedindo que o jogador continue se movendo após completar a corrida
+    {
+        gameObject.GetComponent<PlayerInput>().enabled = false; // Desabilita o componente PlayerInput para impedir que o jogador continue recebendo entrada de controle
     }
 
 }

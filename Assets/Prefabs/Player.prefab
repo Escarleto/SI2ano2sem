@@ -209,11 +209,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7779253992473325175}
+  - component: {fileID: -4494396536919789595}
   - component: {fileID: 6261231784033452557}
   - component: {fileID: 6858365335538728359}
-  - component: {fileID: 2716703245207043696}
   - component: {fileID: 1624948749566610565}
   - component: {fileID: 8245772961463184172}
+  - component: {fileID: 1713214502046610762}
   - component: {fileID: 1708106257725073344}
   - component: {fileID: 2173667305450807367}
   - component: {fileID: 7280793554427106671}
@@ -244,6 +245,19 @@ Transform:
   - {fileID: 8190445490704010371}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4494396536919789595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4515941440530514928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df6fa4370906d6d4b90b115385a8fb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HatAnchor: {fileID: 1204704541006971534}
 --- !u!114 &6261231784033452557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2c3ad3b4d17e2d4b025b639fc0db1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 25
+  MoveSpeed: 15
   JumpForce: 7
   BallRotationSpeed: 100
   PlayerModel: {fileID: 5918955379753584411}
@@ -275,28 +289,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CamAnchor: {fileID: 3425299576323131094}
   Sensitivity: 100
-  CircularMovementRotation: 45
+  CircularMovementRotation: 150
   BaseFOV: 90
   MaxFOV: 105
---- !u!114 &2716703245207043696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4515941440530514928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cb0a76ab744628529b67c52bd3a3904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Hats:
-  - {fileID: -3340165289059171070, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
-  - {fileID: 2720591620142942504, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
-  - {fileID: -7169224625217973691, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
-  - {fileID: -5094165311804314691, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
-  - {fileID: 5937608357998257729, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
-  HatAnchor: {fileID: 1204704541006971534}
 --- !u!114 &1624948749566610565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +319,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IconUISlot: {fileID: 4435606354592933113}
+--- !u!114 &1713214502046610762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4515941440530514928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39adf9f04ca463eeeaccddc2f21b1f07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1708106257725073344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,34 +400,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 15cef263-9014-4fd5-94d9-4e4a6234a6ef
     m_ActionName: 'UI/Cancel[/Keyboard/escape]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 32b35790-4ed0-4e9a-aa41-69ac6d629449
-    m_ActionName: 'UI/Point[/Mouse/position]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3c7022bf-7922-4f7c-a998-c437916075ad
-    m_ActionName: 'UI/Click[/Mouse/leftButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 44b200b1-1557-4083-816c-b22cbdf77ddf
-    m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: dad70c86-b58c-4b17-88ad-f5e53adf419e
-    m_ActionName: 'UI/MiddleClick[/Mouse/middleButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0489e84a-4833-4c40-bfae-cea84b696689
-    m_ActionName: 'UI/ScrollWheel[/Mouse/scroll]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 24908448-c609-4bc3-a128-ea258674378a
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
-    m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6858365335538728359}

@@ -2,22 +2,25 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using DG.Tweening;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerUI : MonoBehaviour
 {
-    private PlayerController Player;
+    private PlayerData Player;
     public GameObject Canvas;
-    [SerializeField] private UnityEngine.UI.Image BlindEffect;
+    [SerializeField] private Image BlindEffect;
 
     private void Start()
     {
-        Player = GetComponent<PlayerController>();
+        Player = GetComponent<PlayerData>();
 
-        //Configura a cor do Canvas para ser a mesma do jogador usando o PlayerController para acessar a cor do jogador
-        foreach (UnityEngine.UI.Image Image in Canvas.GetComponentsInChildren<UnityEngine.UI.Image>())
-            Image.color = Player.PlayerColor;
-
+        //Configura a cor do Canvas para ser a mesma do jogador usando o PlayerData para acessar a cor do jogador
+        foreach (Image CurrentImage in Canvas.GetComponentsInChildren<Image>())
+        {
+            if (CurrentImage.gameObject.CompareTag("ButtonMap")) continue;
+            CurrentImage.color = Player.PlayerColor;
+        }
 
     }
 
@@ -31,5 +34,10 @@ public class PlayerUI : MonoBehaviour
         yield return new WaitForSeconds(2.5f); // Aguarda 2.5 segundos para manter o efeito de cegueira ativo
         BlindEffect.DOColor(new Color(BlindEffect.color.r, BlindEffect.color.g, BlindEffect.color.b, 0), 0.5f).SetEase(Ease.InBack).
         OnComplete(() => BlindEffectOBJ.SetActive(false)); // Anima a transparência do efeito de cegueira para desaparecer gradualmente
+    }
+
+    public void ShowWinScreen()
+    {
+        Debug.Log($"Player {Player.PlayerIndex + 1} venceu a corrida!"); // Imprime uma mensagem de vitória no console para indicar que o jogador venceu a corrida
     }
 }
