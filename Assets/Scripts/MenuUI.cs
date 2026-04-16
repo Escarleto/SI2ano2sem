@@ -5,6 +5,6 @@ public class MenuUI : MonoBehaviour
 {
     public void PlayScene()
     {
-        SceneManager.LoadScene("Testroom", LoadSceneMode.Single);
+        SceneManager.LoadScene("CustumiseScene", LoadSceneMode.Single);
     }
 }

@@ -288,8 +288,6 @@ MonoBehaviour:
   Hats:
   - {fileID: -3340165289059171070, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
   - {fileID: 5937608357998257729, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
-  - {fileID: 2720591620142942504, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
-  - {fileID: -7169224625217973691, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
   - {fileID: -5094165311804314691, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
   HatAnchor: {fileID: 8527305157655670464}
   Model: {fileID: 8120258362148160403}
