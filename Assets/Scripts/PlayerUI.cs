@@ -4,24 +4,44 @@ using UnityEngine.InputSystem.UI;
 using DG.Tweening;
 using UnityEngine.UI;
 using System.Collections;
+using System.Reflection;
 
 public class PlayerUI : MonoBehaviour
 {
-    private PlayerData Player;
+    private CurrentData Player;
     public GameObject Canvas;
     [SerializeField] private Image BlindEffect;
+    [SerializeField] private Image CurrentLapUI;
+    [SerializeField] private Image CurrentPlaceUI;
+    [SerializeField] private Sprite[] LapUI = new Sprite[3];
+
+    [SerializeField] private Sprite[] PlaceUI = new Sprite[4];
 
     private void Start()
     {
-        Player = GetComponent<PlayerData>();
+        Player = GetComponent<CurrentData>();
 
         //Configura a cor do Canvas para ser a mesma do jogador usando o PlayerData para acessar a cor do jogador
         foreach (Image CurrentImage in Canvas.GetComponentsInChildren<Image>())
         {
             if (CurrentImage.gameObject.CompareTag("ButtonMap")) continue;
-            CurrentImage.color = Player.PlayerColor;
+            CurrentImage.color = Player.Data.PlayerColor;
         }
+    }
 
+    public void UpdateLap(int CurrentLap)
+    {
+        if (CurrentLapUI == null) return;
+
+        CurrentLapUI.sprite = LapUI[CurrentLap - 1];
+    }
+
+    public void UpdatePlace(int CurrentPlace)
+    {
+        if (CurrentPlaceUI == null) return;
+
+        Debug.Log("Atualizando");
+        CurrentPlaceUI.sprite = PlaceUI[CurrentPlace - 1];
     }
 
     public IEnumerator BlindEffectCoroutine()
@@ -38,6 +58,6 @@ public class PlayerUI : MonoBehaviour
 
     public void ShowWinScreen()
     {
-        Debug.Log($"Player {Player.PlayerIndex + 1} venceu a corrida!"); // Imprime uma mensagem de vitória no console para indicar que o jogador venceu a corrida
+        Debug.Log($"Player {Player.Data.PlayerIndex + 1} venceu a corrida!"); // Imprime uma mensagem de vitória no console para indicar que o jogador venceu a corrida
     }
 }

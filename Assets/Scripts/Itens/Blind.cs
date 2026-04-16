@@ -9,15 +9,20 @@ public class Blind : MonoBehaviour, Item
 
     public void Use(PlayerController Player)
     {
-        PlayerData PlayerInfo = Player.GetComponent<PlayerData>();
+        CurrentData ThisPlayerData = Player.GetComponent<CurrentData>();
+        if (ThisPlayerData == null) return;
 
-        for (int i = 0; i < Manager.Instance.PlayersInGame.Length; i++)
+        foreach (PlayerData OtherPlayer in Manager.Instance.PlayersInGame)
         {
-            if (Manager.Instance.PlayersInGame[i] == PlayerInfo || Manager.Instance.PlayersInGame[i] == null)
-                continue; // Pula o jogador que usou o item para não se auto-cegar
+            if (OtherPlayer == ThisPlayerData.Data)
+                continue;
 
-            PlayerUI PlayerUI = Manager.Instance.PlayersInGame[i].GetComponent<PlayerUI>(); // Obtém o PlayerUI do jogador afetado para iniciar a coroutine do efeito de cegueira
-            PlayerUI.StartCoroutine(PlayerUI.BlindEffectCoroutine()); // Inicia a coroutine do efeito de cegueira na UI do jogador afetado
+            if (OtherPlayer.Controller == null)
+                continue;
+
+            PlayerUI BlindUI = OtherPlayer.Controller.GetComponent<PlayerUI>();
+            if (BlindUI != null)
+                BlindUI.StartCoroutine(BlindUI.BlindEffectCoroutine());
         }
     }
 }

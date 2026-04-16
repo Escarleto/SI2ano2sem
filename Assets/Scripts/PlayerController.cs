@@ -15,10 +15,17 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] public Rigidbody RB;
     [SerializeField] private Transform PlayerModel;
     [SerializeField] private Transform CamDir;
+    [SerializeField] private Transform HatAnchor;
+    private CurrentData Player;
 
     private void Start()
     {
         RB = GetComponent<Rigidbody>();
+        Player = GetComponent<CurrentData>();
+        if (Player == null) return;
+        Instantiate(Player.Data.Hat, HatAnchor.transform);
+        Player.Data.Controller = this;
+        Player.Initialize();
     }
 
     private void FixedUpdate() //Usa FixedUpdate para garantir que a física seja aplicada de forma consistente

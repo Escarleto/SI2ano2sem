@@ -10,7 +10,7 @@ public class HatManager : MonoBehaviour
     [SerializeField] private Transform Model;
     [SerializeField] private SpriteRenderer ButtonMap;
     [SerializeField] private Sprite[] ButtonMaps = new Sprite[2];
-    private PlayerData Player; // Referência ao PlayerData para acessar o índice do jogador
+    private CurrentData Player; // Referência ao PlayerData para acessar o índice do jogador
     private GameObject currentHat;
     private bool Ready = false;
 
@@ -18,8 +18,11 @@ public class HatManager : MonoBehaviour
 
     private void Start()
     {
-        Player = GetComponent<PlayerData>(); // Obtém o PlayerData do jogador para acessar o índice do jogador
-        if (Player == null || Hats.Length == 0 || HatAnchor == null) return;
+        Player = GetComponent<CurrentData>();
+        transform.position = Manager.Instance.PlayerSpawnPoints[Player.Data.PlayerIndex];
+        transform.Rotate(Vector3.up * 90f);
+
+        if (Hats.Length == 0 || HatAnchor == null) return;
 
         UpdateHat();
     }
@@ -66,10 +69,13 @@ public class HatManager : MonoBehaviour
     {
         if (Context.performed && Ready == false)
         {
-            Ready = true;
-            Manager.Instance.ChosenHats[Player.PlayerIndex] = Hats[currentHatIndex];
+            if (Player == null || Player.Data == null)
+                return;
+
+            Player.Data.Hat = Hats[currentHatIndex];
             Manager.Instance.PlayersReady(1);
             ButtonMap.sprite = ButtonMaps[1];
+            Ready = true;
         }
     }
 
@@ -77,10 +83,12 @@ public class HatManager : MonoBehaviour
     {
         if (Context.performed && Ready == true)
         {
-            Ready = false;
-            Manager.Instance.ChosenHats[Player.PlayerIndex] = null;
+            if (Player == null || Player.Data == null)
+                return;
+            Player.Data.Hat = null;
             Manager.Instance.PlayersReady(-1);
             ButtonMap.sprite = ButtonMaps[0];
+            Ready = false;
         }
     }
 }

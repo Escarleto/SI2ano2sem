@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Almondega
+    second: {fileID: 2100000, guid: 164a260a3c194ea878ab4b5f20182146, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Estrada
     second: {fileID: 2100000, guid: 5056199e37f9eaa73af8bb63d5d17362, type: 2}
   - first:

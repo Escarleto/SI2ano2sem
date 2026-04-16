@@ -230,10 +230,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4544581763307157888}
-  - component: {fileID: 6373935141265982155}
   - component: {fileID: 8559770552362685055}
   - component: {fileID: 9042731927702068008}
   - component: {fileID: 3090843445352030452}
+  - component: {fileID: 3753094674342249830}
   m_Layer: 0
   m_Name: PlayerCustom
   m_TagString: Player
@@ -260,19 +260,6 @@ Transform:
   - {fileID: 7519537503238931686}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6373935141265982155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2515420684246967645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2df6fa4370906d6d4b90b115385a8fb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HatAnchor: {fileID: 537989091289796647}
 --- !u!114 &8559770552362685055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +278,9 @@ MonoBehaviour:
   - {fileID: 2720591620142942504, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
   - {fileID: -7169224625217973691, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
   - {fileID: -5094165311804314691, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
+  - {fileID: 713487598349924360, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
+  - {fileID: -3801206660625913779, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
+  - {fileID: 5099879020758397900, guid: 2766cd7a176d67d5882d9dba914fec43, type: 3}
   HatAnchor: {fileID: 8527305157655670464}
   Model: {fileID: 8120258362148160403}
   ButtonMap: {fileID: 7727413902682312186}
@@ -337,35 +327,11 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 351f2ccd-1f9f-44bf-9bec-d62ac5c5f408
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnJump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: f1ba0d36-48eb-4cd5-b651-1c94a6531f70
     m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
@@ -417,35 +383,11 @@ MonoBehaviour:
     m_ActionId: 15cef263-9014-4fd5-94d9-4e4a6234a6ef
     m_ActionName: 'UI/Cancel[/Keyboard/escape]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
-        m_MethodName: OnLook
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: b1f1c98d-39d0-467b-9407-f16cf5dca5e3
     m_ActionName: 'Player/Look[/Mouse/delta,/Gamepad/leftStick/up,/Gamepad/leftStick/down,/Gamepad/leftStick/left,/Gamepad/leftStick/right]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ItemManager, Assembly-CSharp
-        m_MethodName: OnItem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 9aeb4529-783a-40b0-81fb-e52423903fa1
     m_ActionName: 'Player/Item[/Keyboard/f,/Gamepad1/buttonWest]'
   m_NeverAutoSwitchControlSchemes: 1
@@ -453,6 +395,25 @@ MonoBehaviour:
   m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 1832990908586250491}
+--- !u!114 &3753094674342249830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2515420684246967645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 166e9cad14851d08abad60898cbcf346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data:
+    PlayerIndex: 0
+    DeviceId: 0
+    PlayerColor: {r: 0, g: 0, b: 0, a: 0}
+    SpawnPoint: {x: 0, y: 0, z: 0}
+    Hat: {fileID: 0}
+    Controller: {fileID: 0}
 --- !u!1 &3514004073602049359
 GameObject:
   m_ObjectHideFlags: 0

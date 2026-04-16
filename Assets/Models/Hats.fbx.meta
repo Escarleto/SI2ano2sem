@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Almondega.001
+    second: {fileID: 2100000, guid: 8436b0982da9535b6adcf4b827daeaaa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Chapeu Alto
     second: {fileID: 2100000, guid: 7dc80efb7c8a111c0a1e2155f859152b, type: 2}
   - first:
@@ -17,8 +22,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Corda do cowboy
+    second: {fileID: 2100000, guid: 704a7a238f12ae544acd0421fcf88c54, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Garfo
     second: {fileID: 2100000, guid: 5ab7e42004563bcbf804b82bb2bdbf18, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Interior das orelhas de gato
+    second: {fileID: 2100000, guid: 1a4ff25233764a11db075d7114f4bda7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Orelha de gatos
+    second: {fileID: 2100000, guid: 05cb3a3805ed78361acd4a2d7358f725, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -29,6 +49,21 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Rosa
     second: {fileID: 2100000, guid: 2e1e62774122183e38b7ef7b3eb1bba7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: corda lufffy
+    second: {fileID: 2100000, guid: a7acbdf964f0adcc5a9fce9704169cae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cowboy
+    second: {fileID: 2100000, guid: 57999f320e1312f41aea16fa84078b00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lufyy
+    second: {fileID: 2100000, guid: f1ac0e1f1ee6f795385ae74995806931, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
