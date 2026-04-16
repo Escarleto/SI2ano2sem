@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 2716703245207043696}
   - component: {fileID: 1624948749566610565}
   - component: {fileID: 8245772961463184172}
+  - component: {fileID: 1713214502046610762}
   - component: {fileID: 1708106257725073344}
   - component: {fileID: 2173667305450807367}
   - component: {fileID: 7280793554427106671}
@@ -256,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2c3ad3b4d17e2d4b025b639fc0db1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 25
+  MoveSpeed: 15
   JumpForce: 7
   BallRotationSpeed: 100
   PlayerModel: {fileID: 5918955379753584411}
@@ -275,7 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CamAnchor: {fileID: 3425299576323131094}
   Sensitivity: 100
-  CircularMovementRotation: 45
+  CircularMovementRotation: 100
   BaseFOV: 90
   MaxFOV: 105
 --- !u!114 &2716703245207043696
@@ -324,6 +325,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IconUISlot: {fileID: 4435606354592933113}
+--- !u!114 &1713214502046610762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4515941440530514928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39adf9f04ca463eeeaccddc2f21b1f07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1708106257725073344
 MonoBehaviour:
   m_ObjectHideFlags: 0

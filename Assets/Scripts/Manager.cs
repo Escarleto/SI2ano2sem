@@ -9,12 +9,23 @@ public class Manager : MonoBehaviour
 
     public Color[] PlayerColors = new Color[4]; // Array de cores para os jogadores, com um limite de 4 jogadores
     [System.NonSerialized] public PlayerController[] PlayersInGame = new PlayerController[4]; //Array para armazenar os jogadores que estão no jogo, com um limite de 4 jogadores
-    private PlayerInputManager PlayerManager;
+    [System.NonSerialized]
+    public Vector3[] PlayerSpawnPoints =
+    {
+        new Vector3(-54f, 70f, 194f), // Ponto de spawn para o jogador 1
+        new Vector3(-54f, 70f, 187f), // Ponto de spawn para o jogador 2
+        new Vector3(-54f, 70f, 180f), // Ponto de spawn para o jogador 3
+        new Vector3(-54f, 70f, 172f)  // Ponto de spawn para o jogador 4
+    };
 
+    [System.NonSerialized] public GameObject[] ChosenHats = new GameObject[4];
+
+    private PlayerInputManager PlayerManager;
 
     private void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(gameObject); // Garante que o objeto do Manager persista entre as cenas, evitando que seja destruído ao carregar uma nova cena
     }
 
     private void Start()

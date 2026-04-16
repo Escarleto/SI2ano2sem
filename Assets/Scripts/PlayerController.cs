@@ -23,13 +23,17 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         RB = GetComponent<Rigidbody>();
+        transform.position = Manager.Instance.PlayerSpawnPoints[PlayerIndex]; // Define a posição inicial do jogador com base no ponto de spawn atribuído pelo Manager usando o índice do jogador
+        transform.localRotation = Quaternion.Euler(0f, 90f, 0f); // Gira o modelo do jogador para que ele esteja voltado para a direção correta no início da corrida
         SpawnPoint = transform.position; // Define o ponto de spawn inicial como a posição atual do jogador
     }
 
     private void FixedUpdate() //Usa FixedUpdate para garantir que a física seja aplicada de forma consistente
     {
+        Vector3 PlaneCamDir = Vector3.ProjectOnPlane(CamDir.forward, Vector3.up).normalized; // Obtém a direção da câmera no plano horizontal, ignorando a inclinação vertical
+        Vector3 CamRight = Vector3.ProjectOnPlane(CamDir.right, Vector3.up).normalized; // Obtém a direção lateral da câmera no plano horizontal
         //Aplica a força de movimento com base na entrada do jogador, normalizando para evitar que a velocidade seja maior na diagonal
-        Vector3 InputDirection = (CamDir.forward * MoveInput.y + CamDir.right * MoveInput.x).normalized;
+        Vector3 InputDirection = (PlaneCamDir * MoveInput.y + CamRight * MoveInput.x).normalized;
         MoveDirection = InputDirection * MoveSpeed * Time.fixedDeltaTime;
         RB.AddForce(MoveDirection, ForceMode.VelocityChange);
         RB.linearVelocity = Mathf.Clamp(RB.linearVelocity.magnitude, 0f, MoveSpeed * 3f) * RB.linearVelocity.normalized; // Limita a velocidade máxima do jogador para evitar que ele se mova muito rápido
@@ -72,6 +76,11 @@ public class PlayerController : MonoBehaviour
         transform.DOScale(Vector3.one * 3, 0.5f).SetEase(Ease.OutBack);
         yield return new WaitForSeconds(5f); // Dura 5 segundos
         transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.InBack);
+    }
+
+    public void OnDisable() //Este método é chamado para desabilitar o PlayerController, impedindo que o jogador continue se movendo após completar a corrida
+    {
+        gameObject.GetComponent<PlayerInput>().enabled = false; // Desabilita o componente PlayerInput para impedir que o jogador continue recebendo entrada de controle
     }
 
 }

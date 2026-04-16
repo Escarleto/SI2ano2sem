@@ -6,19 +6,18 @@ public class ItemBox : MonoBehaviour
     [SerializeField] private GameObject[] Itens; // Referência ao item que será instanciado quando o jogador colidir com a caixa de itens
     [SerializeField] private ParticleSystem CollectEffect;
     [SerializeField] private GameObject ItemBoxModel;
-    private BoxCollider TriggerArea;
+    private CapsuleCollider TriggerArea;
     [SerializeField] private float SpinSpeed = 50f;
 
     private void Start()
     {
         ItemBoxModel.SetActive(true); // Ativa o modelo da caixa de itens para que ele seja visível na cena
-        TriggerArea = GetComponent<BoxCollider>(); // Obtém o componente BoxCollider para usar como área de detecção de colisão
+        TriggerArea = GetComponent<CapsuleCollider>(); // Obtém o componente CapsuleCollider para usar como área de detecção de colisão
     }
 
     private void Update()
     {
-        if (ItemBoxModel.activeSelf) // Verifica se o modelo da caixa de itens está ativo antes de aplicar a rotação
-            ItemBoxModel.transform.Rotate(Vector3.up * SpinSpeed * Time.deltaTime); // Rotaciona o modelo da caixa de itens para criar um efeito visual
+        transform.Rotate(Vector3.up, SpinSpeed * Time.deltaTime); // Gira o modelo da caixa de itens em torno do eixo Y para criar um efeito de rotação
     }
 
     private void SetBox(bool State)

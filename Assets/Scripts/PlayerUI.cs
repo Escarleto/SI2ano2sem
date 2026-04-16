@@ -17,8 +17,6 @@ public class PlayerUI : MonoBehaviour
         //Configura a cor do Canvas para ser a mesma do jogador usando o PlayerController para acessar a cor do jogador
         foreach (UnityEngine.UI.Image Image in Canvas.GetComponentsInChildren<UnityEngine.UI.Image>())
             Image.color = Player.PlayerColor;
-
-
     }
 
     public IEnumerator BlindEffectCoroutine()
@@ -31,5 +29,10 @@ public class PlayerUI : MonoBehaviour
         yield return new WaitForSeconds(2.5f); // Aguarda 2.5 segundos para manter o efeito de cegueira ativo
         BlindEffect.DOColor(new Color(BlindEffect.color.r, BlindEffect.color.g, BlindEffect.color.b, 0), 0.5f).SetEase(Ease.InBack).
         OnComplete(() => BlindEffectOBJ.SetActive(false)); // Anima a transparência do efeito de cegueira para desaparecer gradualmente
+    }
+
+    public void ShowWinScreen()
+    {
+        Debug.Log($"Player {Player.PlayerIndex + 1} venceu a corrida!"); // Imprime uma mensagem de vitória no console para indicar que o jogador venceu a corrida
     }
 }
