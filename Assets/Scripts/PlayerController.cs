@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate() //Usa FixedUpdate para garantir que a física seja aplicada de forma consistente
     {
         Vector3 PlaneCamDir = Vector3.ProjectOnPlane(CamDir.forward, Vector3.up).normalized; // Obtém a direção da câmera no plano horizontal, ignorando a inclinação vertical
-        Vector3 CamRight = Vector3.ProjectOnPlane(CamDir.right, Vector3.up).normalized; // Obtém a direção lateral da câmera no plano horizontal
+        Vector3 CamRight = Vector3.ProjectOnPlane(CamDir.right, Vector3.up); // Obtém a direção lateral da câmera no plano horizontal
         //Aplica a força de movimento com base na entrada do jogador, normalizando para evitar que a velocidade seja maior na diagonal
         Vector3 InputDirection = (PlaneCamDir * MoveInput.y + CamRight * MoveInput.x).normalized;
         MoveDirection = InputDirection * MoveSpeed * Time.fixedDeltaTime;
@@ -55,9 +55,29 @@ public class PlayerController : MonoBehaviour
             RB.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
     }
 
-    private bool IsGrounded() //Este método verifica se a bola está tocando o chão usando um Raycast para detectar colisões com o chão
+    private bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, 0.1f);
+        float radius = GetComponent<SphereCollider>().radius;
+        float distance = 0.6f;
+
+        Vector3 origin = transform.position + Vector3.up * 0.1f;
+
+        Vector3[] directions = new Vector3[]
+        {
+        Vector3.down,
+        (Vector3.down + Vector3.forward * 0.3f).normalized,
+        (Vector3.down + Vector3.back * 0.3f).normalized,
+        (Vector3.down + Vector3.right * 0.3f).normalized,
+        (Vector3.down + Vector3.left * 0.3f).normalized
+        };
+
+        foreach (var dir in directions)
+        {
+            if (Physics.Raycast(origin, dir, distance))
+                return true;
+        }
+
+        return false;
     }
 
     public IEnumerator Nitro()

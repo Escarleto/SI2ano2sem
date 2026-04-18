@@ -1,25 +1,30 @@
 using UnityEngine;
+
 public class CheckPoint : MonoBehaviour
 {
     [SerializeField] private int CheckPointIndex; // Defina 0, 1, 2... no Inspector
     [SerializeField] private Transform SpawnPos;
-    [SerializeField] private GameObject GameFinishLine;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player")) return;
+
+        RaceManager Racer = other.GetComponent<RaceManager>();
+        if (Racer == null) return;
+
+        Racer.LastCheckpointIndex = CheckPointIndex;
+        int NextIndex = CheckPointIndex + 1;
+
+        if (NextIndex >= TrackPlacer.Instance.Checkpoints.Length)
         {
-            // Pega o RaceManager do player que entrou no trigger
-            RaceManager race = other.GetComponent<RaceManager>();
-
-            if (race != null)
-                race.LastCheckpointIndex = CheckPointIndex;
-
-            if (GameFinishLine.activeSelf == false)
-                GameFinishLine.SetActive(true);
-
-            // Mantém sua lógica de SpawnPoint se necessário
-            other.GetComponent<CurrentData>().Data.SpawnPoint = SpawnPos.position;
+            NextIndex = 0;
+            Racer.PlayerLaps++;
         }
+
+        Racer.NextCheckpoint = TrackPlacer.Instance.Checkpoints[NextIndex];
+
+        Racer.CanCrossFinishLine = true;
+
+        other.GetComponent<CurrentData>().Data.SpawnPoint = SpawnPos.position;
     }
 }

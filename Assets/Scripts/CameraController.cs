@@ -1,16 +1,18 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform CamAnchor;
+    public Transform CamAnchor;
+
     private PlayerController Player;
     private Camera Cam;
 
     private Vector2 LookInput;
+
     [SerializeField] private float Sensitivity = 75f;
-    [SerializeField] private float CircularMovementRotation = 45f; // Intensidade da rotação circular baseada no movimento lateral
+    [SerializeField] private float CircularMovementRotation = 45f;
+
     [SerializeField] private float BaseFOV = 90f;
     [SerializeField] private float MaxFOV = 105f;
 
@@ -24,33 +26,38 @@ public class CameraController : MonoBehaviour
     {
         if (Player == null) return;
 
-        // Rotaciona a câmera com base na entrada de olhar do jogador, limitando a rotação vertical para evitar que a câmera vire de cabeça para baixo
-        float RotationX = LookInput.x * Time.deltaTime * Sensitivity;
-        float RotationY = LookInput.y * Time.deltaTime * (Sensitivity / 2f);
+        float rotationX = LookInput.x * Time.deltaTime * Sensitivity;
+        float rotationY = LookInput.y * Time.deltaTime * (Sensitivity / 2f);
 
-        // Adiciona rotação automática quando o player se move para o lado, criando movimento circular
-        float CircularRotation = Player.MoveInput.x * Time.deltaTime * CircularMovementRotation;
+        float circularRotation =
+            Player.MoveInput.x * Time.deltaTime * CircularMovementRotation;
 
-        CamAnchor.Rotate(Vector3.up, RotationX + CircularRotation, Space.World);
-        CamAnchor.Rotate(Vector3.right, -RotationY, Space.Self);
-        CamAnchor.localEulerAngles = new Vector3(Mathf.Clamp(CamAnchor.localEulerAngles.x, 2.5f, 35f), CamAnchor.localEulerAngles.y, 0f); // Limita a rotação vertical da câmera para evitar que ela vire de cabeça para baixo
+        CamAnchor.Rotate(Vector3.up, rotationX + circularRotation, Space.World);
+        CamAnchor.Rotate(Vector3.right, -rotationY, Space.Self);
 
-        // Move a câmera ligeiramente para o lado oposto ao movimento lateral do jogador para criar um efeito de caminhada em círculo
-        float TargetOffset = -Player.MoveInput.x * 0.3f;
-        CamAnchor.localPosition = new Vector3(Mathf.Lerp(CamAnchor.localPosition.x, TargetOffset, Time.deltaTime * 10f), CamAnchor.localPosition.y, CamAnchor.localPosition.z);
+        CamAnchor.localEulerAngles = new Vector3(
+            Mathf.Clamp(CamAnchor.localEulerAngles.x, 2.5f, 35f),
+            CamAnchor.localEulerAngles.y,
+            0f
+        );
 
-        // Aumenta o FOV com base na velocidade do player
-        if (Cam != null)
-        {
-            float PlayerSpeed = Player.RB.linearVelocity.magnitude;
-            float MaxSpeed = Player.MoveSpeed * 3f; // Velocidade máxima do player (com base ao clamp em PlayerController)
-            float FOVPercent = Mathf.Clamp01(PlayerSpeed / MaxSpeed); // Normaliza a velocidade entre 0 e 1
-            Cam.fieldOfView = Mathf.Lerp(BaseFOV, MaxFOV, FOVPercent);
-        }
+        float targetOffset = -Player.MoveInput.x * 0.3f;
+
+        CamAnchor.localPosition = new Vector3(
+            Mathf.Lerp(CamAnchor.localPosition.x, targetOffset, Time.deltaTime * 10f),
+            CamAnchor.localPosition.y,
+            CamAnchor.localPosition.z
+        );
+
+        float speed = GetComponent<Rigidbody>().linearVelocity.magnitude;
+        float maxSpeed = Player.MoveSpeed * 3f;
+
+        float fovT = Mathf.Clamp01(speed / maxSpeed);
+        Cam.fieldOfView = Mathf.Lerp(BaseFOV, MaxFOV, fovT);
     }
 
-    public void OnLook(InputAction.CallbackContext Context) //Este método é chamado quando o jogador aperta as teclas de movimento
+    public void OnLook(InputAction.CallbackContext context)
     {
-        LookInput = Context.ReadValue<Vector2>();
+        LookInput = context.ReadValue<Vector2>();
     }
 }

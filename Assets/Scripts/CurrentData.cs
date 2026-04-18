@@ -5,6 +5,7 @@ public class CurrentData : MonoBehaviour
 {
     public PlayerData Data;
     private PlayerController Controller;
+    public Quaternion SpawnRot;
 
     private void Awake()
     {
@@ -19,5 +20,13 @@ public class CurrentData : MonoBehaviour
     public void Initialize()
     {
         Manager.Instance.PlayersInGame[Data.PlayerIndex] = Data;
+    }
+
+    public void Respawn()
+    {
+        transform.position = Data.SpawnPoint;
+        transform.rotation = SpawnRot;
+
+        Controller.RB.linearVelocity = Vector3.zero;
     }
 }

@@ -163,7 +163,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.707077, z: -0, w: 0.70713663}
   m_LocalPosition: {x: -2.32, y: 2.3199997, z: -2.4893415}
-  m_LocalScale: {x: 24.114052, y: 24.114052, z: 24.114052}
+  m_LocalScale: {x: 10.259806, y: 10.259806, z: 10.259806}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4544581763307157888}
@@ -199,7 +199,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8f8b9dabf869a94c28c7d57c85b5974d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -234,10 +234,6 @@ GameObject:
   - component: {fileID: 9042731927702068008}
   - component: {fileID: 3090843445352030452}
   - component: {fileID: 3753094674342249830}
-  - component: {fileID: 6373935141265982155}
-  - component: {fileID: 8559770552362685055}
-  - component: {fileID: 9042731927702068008}
-  - component: {fileID: 3090843445352030452}
   m_Layer: 0
   m_Name: PlayerCustom
   m_TagString: Player
@@ -264,19 +260,6 @@ Transform:
   - {fileID: 7519537503238931686}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6373935141265982155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2515420684246967645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2df6fa4370906d6d4b90b115385a8fb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HatAnchor: {fileID: 537989091289796647}
 --- !u!114 &8559770552362685055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,6 +302,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Canvas: {fileID: 1790109220975849918}
   BlindEffect: {fileID: 0}
+  CurrentLapUI: {fileID: 0}
+  CurrentPlaceUI: {fileID: 0}
+  CurrentCountDownUI: {fileID: 0}
+  LapUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  PlaceUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &3090843445352030452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,19 +345,6 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls: []
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_ActionId: 351f2ccd-1f9f-44bf-9bec-d62ac5c5f408
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
@@ -435,19 +417,6 @@ MonoBehaviour:
     m_ActionName: 'Player/Look[/Mouse/delta,/Gamepad/leftStick/up,/Gamepad/leftStick/down,/Gamepad/leftStick/left,/Gamepad/leftStick/right]'
   - m_PersistentCalls:
       m_Calls: []
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
-        m_MethodName: OnLook
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_ActionId: b1f1c98d-39d0-467b-9407-f16cf5dca5e3
     m_ActionName: 'Player/Look[/Mouse/delta,/Gamepad/leftStick/up,/Gamepad/leftStick/down,/Gamepad/leftStick/left,/Gamepad/leftStick/right]'
   - m_PersistentCalls:
@@ -490,6 +459,7 @@ MonoBehaviour:
     SpawnPoint: {x: 0, y: 0, z: 0}
     Hat: {fileID: 0}
     Controller: {fileID: 0}
+  Facing: 0
 --- !u!1 &3514004073602049359
 GameObject:
   m_ObjectHideFlags: 0

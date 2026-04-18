@@ -74,10 +74,8 @@ public class Manager : MonoBehaviour
             racer.UpdateDistanceToNextCheckpoint();
 
         List<RaceManager> sortedRankings = allRacers
-            .OrderByDescending(rm => rm.PlayerLaps)
-            .ThenByDescending(rm => rm.LastCheckpointIndex)
-            .ThenBy(rm => rm.DistanceToNextCheckpoint)
-            .ToList();
+        .OrderByDescending(rm => rm.GetProgress())
+        .ToList();
 
         for (int i = 0; i < sortedRankings.Count; i++)
         {

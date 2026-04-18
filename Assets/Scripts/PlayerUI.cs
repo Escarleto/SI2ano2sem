@@ -13,34 +13,34 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private Image BlindEffect;
     [SerializeField] private Image CurrentLapUI;
     [SerializeField] private Image CurrentPlaceUI;
-    [SerializeField] private Sprite[] LapUI = new Sprite[3];
+    [SerializeField] private Image CurrentCountDownUI;
+    [SerializeField] private GameObject Win;
 
+    [SerializeField] private Sprite[] LapUI = new Sprite[3];
     [SerializeField] private Sprite[] PlaceUI = new Sprite[4];
 
     private void Start()
     {
         Player = GetComponent<CurrentData>();
 
-        //Configura a cor do Canvas para ser a mesma do jogador usando o PlayerData para acessar a cor do jogador
         foreach (Image CurrentImage in Canvas.GetComponentsInChildren<Image>())
         {
             if (CurrentImage.gameObject.CompareTag("ButtonMap")) continue;
             CurrentImage.color = Player.Data.PlayerColor;
         }
+        CurrentCountDownUI.gameObject.SetActive(false);
+        Win.SetActive(false);
     }
 
-    public void UpdateLap(int CurrentLap)
+    public void UpdateLap()
     {
         if (CurrentLapUI == null) return;
-
-        CurrentLapUI.sprite = LapUI[CurrentLap - 1];
+        CurrentLapUI.sprite = LapUI[Player.GetComponent<RaceManager>().PlayerLaps - 1];
     }
 
     public void UpdatePlace(int CurrentPlace)
     {
         if (CurrentPlaceUI == null) return;
-
-        Debug.Log("Atualizando");
         CurrentPlaceUI.sprite = PlaceUI[CurrentPlace - 1];
     }
 
@@ -58,6 +58,30 @@ public class PlayerUI : MonoBehaviour
 
     public void ShowWinScreen()
     {
-        Debug.Log($"Player {Player.Data.PlayerIndex + 1} venceu a corrida!"); // Imprime uma mensagem de vitória no console para indicar que o jogador venceu a corrida
+        Win.SetActive(true);
+    }
+
+    public void ShowCountdownNum(int Number)
+    {
+        CurrentCountDownUI.sprite = PlaceUI[Number - 1];
+
+        GameObject Obj = CurrentCountDownUI.gameObject;
+
+        Obj.SetActive(true);
+        Obj.transform.localScale = Vector3.zero;
+
+        Obj.transform.DOKill();
+        CurrentCountDownUI.DOKill();
+
+        Color c = CurrentCountDownUI.color;
+        c.a = 1f;
+        CurrentCountDownUI.color = c;
+
+        Sequence CountSeq = DOTween.Sequence();
+
+        CountSeq.Append(Obj.transform.DOScale(Vector3.one * 3f, 0.4f).SetEase(Ease.OutBack))
+            .AppendInterval(0.75f)
+            .Append(CurrentCountDownUI.DOFade(0f, 0.3f))
+            .OnComplete(() => { Obj.SetActive(false); });
     }
 }
