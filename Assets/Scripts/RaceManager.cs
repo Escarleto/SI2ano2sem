@@ -1,9 +1,8 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.InputSystem;
 public class RaceManager : MonoBehaviour
 {
-    [System.NonSerialized] public int PlayerLaps = 1;
+    /*[System.NonSerialized]*/ public int PlayerLaps = 0;
     [System.NonSerialized] public int LastCheckpointIndex = -1;
     public float DistanceToNextCheckpoint { get; private set; }
     public Transform NextCheckpoint; // O transform do checkpoint que o player está buscando
@@ -13,14 +12,9 @@ public class RaceManager : MonoBehaviour
 
     private PlayerUI PlayerHUD;
 
-    private void Update()
-    {
-        Debug.Log(PlayerLaps);
-    }
-
     private void Start()
     {
-        PlayerLaps = 1;
+        PlayerLaps = 0;
         NextCheckpoint = TrackPlacer.Instance.Checkpoints[0];
         StartCoroutine(StartRace());
     }

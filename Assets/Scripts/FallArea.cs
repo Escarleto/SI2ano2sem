@@ -9,7 +9,8 @@ public class FallArea : MonoBehaviour
             PlayerController Player = other.GetComponent<PlayerController>();
             CurrentData Data = other.GetComponent<CurrentData>();
 
-            Data.Respawn();
+            Player.transform.position = Data.Data.SpawnPoint;
+            Player.RB.linearVelocity = Vector3.zero;
 
             Rigidbody RB = other.GetComponent<Rigidbody>();
             if (RB != null)

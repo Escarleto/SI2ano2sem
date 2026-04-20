@@ -21,12 +21,4 @@ public class CurrentData : MonoBehaviour
     {
         Manager.Instance.PlayersInGame[Data.PlayerIndex] = Data;
     }
-
-    public void Respawn()
-    {
-        transform.position = Data.SpawnPoint;
-        transform.rotation = SpawnRot;
-
-        Controller.RB.linearVelocity = Vector3.zero;
-    }
 }

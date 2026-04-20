@@ -1,10 +1,7 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.UI;
 using DG.Tweening;
 using UnityEngine.UI;
 using System.Collections;
-using System.Reflection;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -28,6 +25,7 @@ public class PlayerUI : MonoBehaviour
             if (CurrentImage.gameObject.CompareTag("ButtonMap")) continue;
             CurrentImage.color = Player.Data.PlayerColor;
         }
+        if (CurrentCountDownUI == null) return;
         CurrentCountDownUI.gameObject.SetActive(false);
         Win.SetActive(false);
     }
@@ -35,7 +33,7 @@ public class PlayerUI : MonoBehaviour
     public void UpdateLap()
     {
         if (CurrentLapUI == null) return;
-        CurrentLapUI.sprite = LapUI[Player.GetComponent<RaceManager>().PlayerLaps - 1];
+        CurrentLapUI.sprite = LapUI[Player.GetComponent<RaceManager>().PlayerLaps];
     }
 
     public void UpdatePlace(int CurrentPlace)

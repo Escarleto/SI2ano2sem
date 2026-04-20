@@ -1,4 +1,3 @@
-using System.Buffers;
 using UnityEngine;
 
 public class FinishLine : MonoBehaviour
@@ -10,12 +9,14 @@ public class FinishLine : MonoBehaviour
             RaceManager Racer = other.GetComponent<RaceManager>(); // Encontra o objeto RaceManager na cena para atualizar o número de voltas do jogador
             if (Racer.CanCrossFinishLine == false) return;
             Racer.PlayerLaps++;
-            other.GetComponent<PlayerUI>().UpdateLap();
-            Racer.CanCrossFinishLine = false;
-            Racer.GetComponent<CurrentData>().Data.SpawnPoint = Manager.Instance.PlayerSpawnPoints[Racer.GetComponent<CurrentData>().Data.PlayerIndex];
 
-            if (Racer.PlayerLaps < 3) return;
-
+            if (Racer.PlayerLaps < 3)
+            {
+                other.GetComponent<PlayerUI>().UpdateLap();
+                Racer.CanCrossFinishLine = false;
+                Racer.GetComponent<CurrentData>().Data.SpawnPoint = Manager.Instance.PlayerSpawnPoints[Racer.GetComponent<CurrentData>().Data.PlayerIndex];
+                return;
+            }
             other.GetComponent<PlayerUI>().ShowWinScreen(); // Chama o método ShowWinScreen() do PlayerUI para exibir a tela de vitória para o jogador
             other.GetComponent<PlayerController>().OnDisable(); // Desabilita o PlayerController para impedir que o jogador continue se movendo após completar a corrida
         }

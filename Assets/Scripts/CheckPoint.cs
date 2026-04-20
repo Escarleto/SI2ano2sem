@@ -16,10 +16,7 @@ public class CheckPoint : MonoBehaviour
         int NextIndex = CheckPointIndex + 1;
 
         if (NextIndex >= TrackPlacer.Instance.Checkpoints.Length)
-        {
             NextIndex = 0;
-            Racer.PlayerLaps++;
-        }
 
         Racer.NextCheckpoint = TrackPlacer.Instance.Checkpoints[NextIndex];
 
